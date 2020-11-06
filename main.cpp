@@ -42,10 +42,10 @@ void mergesort(int * X, int n, int * tmp)
 {
 	if (n < 2) return;
 
-#pragma omp task firstprivate (X, n, tmp)
+#pragma omp task default(none) firstprivate (X, n, tmp)
 	mergesort(X, n/2, tmp);
 
-#pragma omp task firstprivate (X, n, tmp)
+#pragma omp task default(none) firstprivate (X, n, tmp)
 	mergesort(X+(n/2), n-(n/2), tmp);
 
 #pragma omp taskwait
@@ -69,17 +69,16 @@ int main(int argc, char const * argv[])
 	for (int i=0; i<n; i++)
 		scanf("%d", &data[i]);
 	start = omp_get_wtime();
-#pragma omp parallel
+#pragma omp parallel default(shared)
 	{
 #pragma omp single
 		mergesort(data, n, xtmp);
 	}
 	stop = omp_get_wtime();
-#ifndef PYTHONTEST
-	printf("\nList After Sorting...\n");
-#endif
+#ifdef PYTHONTEST
 	print_list(data, n);
+#endif
 #ifndef PYTHONTEST
-	printf("\nTime: %g\n",stop-start);
+	printf("Num count: %d\nTime: %g\n", n, stop-start);
 #endif
 }
