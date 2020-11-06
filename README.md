@@ -1,7 +1,12 @@
 # OpenMP 1106 Report
 
 ## Test result
-![](https://user-images.githubusercontent.com/46131041/98325947-fb31eb00-202a-11eb-9d2a-121ed50b5579.png)
+
+![](https://user-images.githubusercontent.com/46131041/98340852-f8de8980-2048-11eb-8bc9-75b073d949e7.png)
+
+## Special Thanks
+
+Special thanks to [@ayalhw](https://github.com/ayalhw), who helped me find the connection between performance and the number of threads.
 
 ## License
 
